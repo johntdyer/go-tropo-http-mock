@@ -11,6 +11,7 @@ func BackendHandler(w http.ResponseWriter, req *http.Request, ps httprouter.Para
 	w.Header().Set("X-Tropo-Backend-Path", req.URL.Path)
 	w.Header().Set("X-Tropo-Backend-Protocol", req.Proto)
 	w.Header().Set("X-Tropo-Backend", req.Header.Get("X-Tropo-Backend"))
+	w.Header().Set("X-Forwarded-Proto", req.Header.Get("X-Forwarded-Proto"))
 	fmt.Fprintf(w, "you got %s\n", ps.ByName("name"))
 }
 
